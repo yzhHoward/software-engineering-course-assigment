@@ -18,3 +18,9 @@
 第12周：软件设计说明书（大）
 
 第14周：测试文档（中）、部署文档（小）、用户使用说明书（中）
+
+
+### 友链：
+1组 https://github.com/chensiyan96/Blockchain-part1
+
+2组 https://github.com/callmewindow/BUAA-Give-Me-Money
