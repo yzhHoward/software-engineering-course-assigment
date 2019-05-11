@@ -1,5 +1,8 @@
 package service.api;
 
+import service.utils.exceptions.ReadFailureException;
+import service.utils.exceptions.WriteFailureException;
+
 public interface BlockChainService {
     /*
     String QueryTransaction(String recordId);
