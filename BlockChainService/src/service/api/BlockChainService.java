@@ -24,6 +24,7 @@ public interface BlockChainService {
             String dateTime,
             boolean recordType,
             double sum
+
     );
     */
 
