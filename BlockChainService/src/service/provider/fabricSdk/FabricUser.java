@@ -1,4 +1,4 @@
-package service.fabricSdk;
+package service.provider.fabricSdk;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,29 +14,46 @@ import org.hyperledger.fabric.sdk.User;
 
 import io.netty.util.internal.StringUtil;
 
-
 class FabricUser implements User, Serializable {
 
     private static final long serialVersionUID = 5695080465408336815L;
 
-    /** 名称 */
+    /**
+     * 名称
+     */
     private String name;
-    /** 规则 */
+    /**
+     * 规则
+     */
     private Set<String> roles;
-    /** 账户 */
+    /**
+     * 账户
+     */
     private String account;
-    /** 从属联盟 */
+    /**
+     * 从属联盟
+     */
     private String affiliation;
-    /** 组织 */
+    /**
+     * 组织
+     */
     private String organization;
-    /** 注册操作的密�? */
+    /**
+     * 注册操作的密码
+     */
     private String enrollmentSecret;
-    /** 会员id */
+    /**
+     * 会员id
+     */
     private String mspId;
-    /** 注册登记操作 */
-    Enrollment enrollment = null; // �?要在测试env中访�?
+    /**
+     * 注册登记操作
+     */
+    Enrollment enrollment = null; // 需要在测试env中访问
 
-    /** 存储配置对象 */
+    /**
+     * 存储配置对象
+     */
     private transient FabricStore keyValStore;
     private String keyValStoreName;
 
@@ -55,10 +72,9 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 设置账户信息并将用户状�?�更新至存储配置对象
+     * 设置账户信息并将用户状态更新至存储配置对象
      *
-     * @param account
-     *            账户
+     * @param account 账户
      */
     public void setAccount(String account) {
         this.account = account;
@@ -71,10 +87,9 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 设置从属联盟信息并将用户状�?�更新至存储配置对象
+     * 设置从属联盟信息并将用户状态更新至存储配置对象
      *
-     * @param affiliation
-     *            从属联盟
+     * @param affiliation 从属联盟
      */
     public void setAffiliation(String affiliation) {
         this.affiliation = affiliation;
@@ -92,10 +107,9 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 设置会员id信息并将用户状�?�更新至存储配置对象
+     * 设置会员id信息并将用户状态更新至存储配置对象
      *
-     * @param mspID
-     *            会员id
+     * @param mspID 会员id
      */
     public void setMspId(String mspID) {
         this.mspId = mspID;
@@ -113,10 +127,9 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 设置规则信息并将用户状�?�更新至存储配置对象
+     * 设置规则信息并将用户状态更新至存储配置对象
      *
-     * @param roles
-     *            规则
+     * @param roles 规则
      */
     public void setRoles(Set<String> roles) {
         this.roles = roles;
@@ -135,8 +148,7 @@ class FabricUser implements User, Serializable {
     /**
      * 设置注册操作的密钥信息并将用户状态更新至存储配置对象
      *
-     * @param enrollmentSecret
-     *            注册操作的密�?
+     * @param enrollmentSecret 注册操作的密码
      */
     public void setEnrollmentSecret(String enrollmentSecret) {
         this.enrollmentSecret = enrollmentSecret;
@@ -144,10 +156,9 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 设置注册登记操作信息并将用户状�?�更新至存储配置对象
+     * 设置注册登记操作信息并将用户状态更新至存储配置对象
      *
-     * @param enrollment
-     *            注册登记操作
+     * @param enrollment 注册登记操作
      */
     public void setEnrollment(Enrollment enrollment) {
         this.enrollment = enrollment;
@@ -155,7 +166,7 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 确定这个名称是否已注�?
+     * 确定这个名称是否已注册
      *
      * @return 与否
      */
@@ -172,7 +183,9 @@ class FabricUser implements User, Serializable {
         return this.enrollment != null;
     }
 
-    /** 将用户状态保存至存储配置对象 */
+    /**
+     * 将用户状态保存至存储配置对象
+     */
     public void saveState() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
@@ -187,7 +200,7 @@ class FabricUser implements User, Serializable {
     }
 
     /**
-     * 从键值存储中恢复该用户的状�??(如果找到的话)。如果找不到，什么也不要做�??
+     * 从键值存储中恢复该用户的状态(如果找到的话)。如果找不到，什么也不要做
      *
      * @return 返回用户
      */

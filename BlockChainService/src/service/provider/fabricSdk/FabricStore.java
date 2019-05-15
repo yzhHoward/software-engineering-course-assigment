@@ -1,4 +1,4 @@
-package service.fabricSdk;
+package service.provider.fabricSdk;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,11 +26,12 @@ import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.hyperledger.fabric.sdk.Enrollment;
 
-
 class FabricStore {
 
     private String file;
-    /** 用户信息集合 */
+    /**
+     * 用户信息集合
+     */
     private final Map<String, FabricUser> members = new HashMap<>();
 
     public FabricStore(File file) {
@@ -40,10 +41,8 @@ class FabricStore {
     /**
      * 设置与名称相关的值
      *
-     * @param name
-     *            名称
-     * @param value
-     *            相关值
+     * @param name  名称
+     * @param value 相关值
      */
     public void setValue(String name, String value) {
         Properties properties = loadProperties();
@@ -59,7 +58,7 @@ class FabricStore {
     /**
      * 获取与名称相关的值
      *
-     * @param 名称
+     * @param name 名称
      * @return 相关值
      */
     public String getValue(String name) {
@@ -88,9 +87,8 @@ class FabricStore {
     /**
      * 用给定的名称获取用户
      *
-     * @param 名称
-     * @param 组织
-     *
+     * @param name 名称
+     * @param org 组织
      * @return 用户
      */
     public FabricUser getMember(String name, String org) {
@@ -107,17 +105,12 @@ class FabricStore {
     /**
      * 用给定的名称获取用户
      *
-     * @param name
-     *            名称
-     * @param org
-     *            组织
-     * @param mspId
-     *            会员id
+     * @param name            名称
+     * @param org             组织
+     * @param mspId           会员id
      * @param privateKeyFile
      * @param certificateFile
-     *
      * @return user 用户
-     *
      * @throws IOException
      * @throws NoSuchAlgorithmException
      * @throws NoSuchProviderException
@@ -160,11 +153,8 @@ class FabricStore {
     /**
      * 通过字节数组信息获取私钥
      *
-     * @param data
-     *            字节数组
-     *
+     * @param data 字节数组
      * @return 私钥
-     *
      * @throws IOException
      * @throws NoSuchProviderException
      * @throws NoSuchAlgorithmException
@@ -192,15 +182,18 @@ class FabricStore {
      * 自定义注册登记操作类
      *
      * @author yangyi47
-     *
      */
     static final class StoreEnrollement implements Enrollment, Serializable {
 
         private static final long serialVersionUID = 6965341351799577442L;
 
-        /** 私钥 */
+        /**
+         * 私钥
+         */
         private final PrivateKey privateKey;
-        /** 授权证书 */
+        /**
+         * 授权证书
+         */
         private final String certificate;
 
         StoreEnrollement(PrivateKey privateKey, String certificate) {

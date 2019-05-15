@@ -1,5 +1,4 @@
-package service.fabricSdk;
-
+package service.provider.fabricSdk;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -11,10 +10,9 @@ import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.hyperledger.fabric.sdk.exception.TransactionException;
 import org.hyperledger.fabric.sdk.security.CryptoSuite;
 
-
-import service.fabricSdk.bean.Chaincode;
-import service.fabricSdk.bean.Orderers;
-import service.fabricSdk.bean.Peers;
+import service.provider.fabricSdk.bean.Chaincode;
+import service.provider.fabricSdk.bean.Orderers;
+import service.provider.fabricSdk.bean.Peers;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +41,7 @@ public class ChaincodeManager {
     private ChaincodeID chaincodeID;
 
     public ChaincodeManager(FabricConfig fabricConfig)
-            throws CryptoException, Exception,InvalidArgumentException,ClassNotFoundException,InstantiationException,NoSuchMethodException,NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, TransactionException,IllegalAccessException {
+            throws CryptoException, Exception, InvalidArgumentException, ClassNotFoundException, InstantiationException, NoSuchMethodException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, TransactionException, IllegalAccessException {
         this.config = fabricConfig;
 
         orderers = this.config.getOrderers();
@@ -59,18 +57,18 @@ public class ChaincodeManager {
         channel = getChannel();
         chaincodeID = getChaincodeID();
 
-        client.setUserContext(fabricOrg.getPeerAdmin()); // 也许是1.0.0测试版的bug，只有节点管理员可以调用链码
+        client.setUserContext(fabricOrg.getPeerAdmin());
     }
 
     private FabricOrg getFabricOrg() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException {
 
-        // java.io.tmpdir : C:\Users\yangyi47\AppData\Local\Temp\
+        // java.io.tmpdir : C:\Users\howard\AppData\Local\Temp\
         File storeFile = new File(System.getProperty("java.io.tmpdir") + "/HFCSampletest.properties");
         FabricStore fabricStore = new FabricStore(storeFile);
 
         // Get Org1 from configuration
         FabricOrg fabricOrg = new FabricOrg(peers, orderers, fabricStore, config.getCryptoConfigPath());
-        log.debug("Get skyvotfabricsdk.FabricOrg");
+        log.debug("Get FabricOrg");
         return fabricOrg;
     }
 
@@ -169,10 +167,8 @@ public class ChaincodeManager {
     /**
      * 执行智能合约
      *
-     * @param fcn
-     *            方法名
-     * @param args
-     *            参数数组
+     * @param fcn  方法名
+     * @param args 参数数组
      * @return
      * @throws InvalidArgumentException
      * @throws ProposalException
@@ -255,10 +251,8 @@ public class ChaincodeManager {
     /**
      * 查询智能合约
      *
-     * @param fcn
-     *            方法名
-     * @param args
-     *            参数数组
+     * @param fcn  方法名
+     * @param args 参数数组
      * @return
      * @throws InvalidArgumentException
      * @throws ProposalException

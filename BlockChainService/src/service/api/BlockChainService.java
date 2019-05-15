@@ -4,47 +4,28 @@ import service.utils.exceptions.ReadFailureException;
 import service.utils.exceptions.WriteFailureException;
 
 public interface BlockChainService {
-    /*
-    String QueryTransaction(String recordId);
-    String QueryBalanceChange(String recordId);
-    boolean InsertTransaction(
-            String recordId,
-            int paymentInstitutionId,
-            int paymentUserId,
-            int collectionInstitutionId,
-            int collectionUserId,
-            String dateTime,
-            boolean transactionType,
-            double sum
-    );
-    boolean InsertBalanceChange(
-            String recordId,
-            int institutionId,
-            int userId,
-            String dateTime,
-            boolean recordType,
-            double sum
+    // 完成实名
+    void invokeUserInformation(String userName, String encrypted_message) throws WriteFailureException;
 
-    );
-    */
+    String queryUserInformation(String userName) throws ReadFailureException;
 
-    void setUserName(String userId, String encrypted_message) throws WriteFailureException;
+    // 申请融资
+    void invokeFinancingApply(long recordId, String encrypted_message) throws WriteFailureException;
 
-    String getUserName(String userId) throws ReadFailureException;
+    String queryFinancingApply(long recordId) throws ReadFailureException;
 
-    void setFinancingApply(String userId, String encrypted_message) throws WriteFailureException;
+    // 签署合同
+    void invokeContract(long recordId, String encrypted_message) throws WriteFailureException;
 
-    String getFinancingApply(String userId) throws ReadFailureException;
+    String queryContract(long recordId) throws ReadFailureException;
 
-    void setContract(String userId, String encrypted_message) throws WriteFailureException;
+    // 完成放款
+    void invokeLoan(long recordId, String encrypted_message) throws WriteFailureException;
 
-    String getContract(String userId) throws ReadFailureException;
+    String queryLoan(long recordId) throws ReadFailureException;
 
-    void setLoan(String userId, String encrypted_message) throws WriteFailureException;
+    // 完成还款
+    void invokeRepayment(long recordId, String encrypted_message) throws WriteFailureException;
 
-    String getLoan(String userId) throws ReadFailureException;
-
-    void setRepayment(String userId, String encrypted_message) throws WriteFailureException;
-
-    String getRepayment(String userId) throws ReadFailureException;
+    String queryRepayment(long recordId) throws ReadFailureException;
 }

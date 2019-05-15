@@ -1,4 +1,4 @@
-package service.fabricSdk;
+package service.provider.fabricSdk;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,42 +19,67 @@ import org.hyperledger.fabric.sdk.Peer;
 import org.hyperledger.fabric.sdk.User;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
 
-import service.fabricSdk.bean.Orderers;
-import service.fabricSdk.bean.Peers;
-
+import service.provider.fabricSdk.bean.Orderers;
+import service.provider.fabricSdk.bean.Peers;
 
 class FabricOrg {
 
     private static Logger log = Logger.getLogger(FabricOrg.class);
 
-    /** 名称 */
+    /**
+     * 名称
+     */
     private String name;
-    /** 会员id */
+    /**
+     * 会员id
+     */
     private String mspid;
-    /** ca 客户端 */
+    /**
+     * ca 客户端
+     */
     private HFCAClient caClient;
 
-    /** 用户集合 */
+    /**
+     * 用户集合
+     */
     Map<String, User> userMap = new HashMap<>();
-    /** 本地节点集合 */
+    /**
+     * 本地节点集合
+     */
     Map<String, String> peerLocations = new HashMap<>();
-    /** 本地排序服务集合 */
+    /**
+     * 本地排序服务集合
+     */
     Map<String, String> ordererLocations = new HashMap<>();
-    /** 本地事件集合 */
+    /**
+     * 本地事件集合
+     */
     Map<String, String> eventHubLocations = new HashMap<>();
-    /** 节点集合 */
+    /**
+     * 节点集合
+     */
     Set<Peer> peers = new HashSet<>();
-    /** 联盟管理员用户 */
+    /**
+     * 联盟管理员用户
+     */
     private FabricUser admin;
-    /** 本地 ca */
+    /**
+     * 本地 ca
+     */
     private String caLocation;
-    /** ca 配置 */
+    /**
+     * ca 配置
+     */
     private Properties caProperties = null;
 
-    /** 联盟单节点管理员用户 */
+    /**
+     * 联盟单节点管理员用户
+     */
     private FabricUser peerAdmin;
 
-    /** 域名名称 */
+    /**
+     * 域名名称
+     */
     private String domainName;
 
     public FabricOrg(Peers peers, Orderers orderers, FabricStore fabricStore, String cryptoConfigPath)
@@ -76,16 +101,18 @@ class FabricOrg {
 
         setAdmin(fabricStore.getMember("admin", peers.getOrgName())); // 设置该组织的管理员
 
-        File skFile = Paths.get(cryptoConfigPath, "/peerOrganizations/", peers.getOrgDomainName(), String.format("/users/Admin@%s/msp/keystore", peers.getOrgDomainName())).toFile();
+        File skFile = Paths.get(cryptoConfigPath, "/peerOrganizations/", peers.getOrgDomainName(),
+                String.format("/users/Admin@%s/msp/keystore", peers.getOrgDomainName())).toFile();
         File certificateFile = Paths.get(cryptoConfigPath, "/peerOrganizations/", peers.getOrgDomainName(),
                 String.format("/users/Admin@%s/msp/signcerts/Admin@%s-cert.pem", peers.getOrgDomainName(), peers.getOrgDomainName())).toFile();
         log.debug("skFile = " + skFile.getAbsolutePath());
         log.debug("certificateFile = " + certificateFile.getAbsolutePath());
         File directory = new File("");//设定为当前文件夹
-        try{
+        try {
             System.out.println(directory.getCanonicalPath());//获取标准的路径
             System.out.println(directory.getAbsolutePath());//获取绝对路径
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
         setPeerAdmin(fabricStore.getMember(peers.getOrgName() + "Admin", peers.getOrgName(), peers.getOrgMSPID(), findFileSk(skFile), certificateFile)); // 一个特殊的用户，可以创建通道，连接对等点，并安装链码
     }
 
@@ -105,8 +132,7 @@ class FabricOrg {
     /**
      * 设置联盟管理员用户
      *
-     * @param admin
-     *            联盟管理员用户
+     * @param admin 联盟管理员用户
      */
     public void setAdmin(FabricUser admin) {
         this.admin = admin;
@@ -124,8 +150,7 @@ class FabricOrg {
     /**
      * 设置本地ca
      *
-     * @param caLocation
-     *            本地ca
+     * @param caLocation 本地ca
      */
     public void setCALocation(String caLocation) {
         this.caLocation = caLocation;
@@ -143,10 +168,8 @@ class FabricOrg {
     /**
      * 添加本地节点
      *
-     * @param name
-     *            节点key
-     * @param location
-     *            节点
+     * @param name     节点key
+     * @param location 节点
      */
     public void addPeerLocation(String name, String location) {
         peerLocations.put(name, location);
@@ -155,10 +178,8 @@ class FabricOrg {
     /**
      * 添加本地组织
      *
-     * @param name
-     *            组织key
-     * @param location
-     *            组织
+     * @param name     组织key
+     * @param location 组织
      */
     public void addOrdererLocation(String name, String location) {
         ordererLocations.put(name, location);
@@ -167,10 +188,8 @@ class FabricOrg {
     /**
      * 添加本地事件
      *
-     * @param name
-     *            事件key
-     * @param location
-     *            事件
+     * @param name     事件key
+     * @param location 事件
      */
     public void addEventHubLocation(String name, String location) {
         eventHubLocations.put(name, location);
@@ -179,8 +198,7 @@ class FabricOrg {
     /**
      * 获取本地节点
      *
-     * @param name
-     *            节点key
+     * @param name 节点key
      * @return 节点
      */
     public String getPeerLocation(String name) {
@@ -190,8 +208,7 @@ class FabricOrg {
     /**
      * 获取本地组织
      *
-     * @param name
-     *            组织key
+     * @param name 组织key
      * @return 组织
      */
     public String getOrdererLocation(String name) {
@@ -201,8 +218,7 @@ class FabricOrg {
     /**
      * 获取本地事件
      *
-     * @param name
-     *            事件key
+     * @param name 事件key
      * @return 事件
      */
     public String getEventHubLocation(String name) {
@@ -266,8 +282,7 @@ class FabricOrg {
     /**
      * 设置 ca 客户端
      *
-     * @param caClient
-     *            ca 客户端
+     * @param caClient ca 客户端
      */
     public void setCAClient(HFCAClient caClient) {
         this.caClient = caClient;
@@ -285,8 +300,7 @@ class FabricOrg {
     /**
      * 向用户集合中添加用户
      *
-     * @param user
-     *            用户
+     * @param user 用户
      */
     public void addUser(FabricUser user) {
         userMap.put(user.getName(), user);
@@ -295,8 +309,7 @@ class FabricOrg {
     /**
      * 从用户集合根据名称获取用户
      *
-     * @param name
-     *            名称
+     * @param name 名称
      * @return 用户
      */
     public User getUser(String name) {
@@ -306,8 +319,7 @@ class FabricOrg {
     /**
      * 向节点集合中添加节点
      *
-     * @param peer
-     *            节点
+     * @param peer 节点
      */
     public void addPeer(Peer peer) {
         peers.add(peer);
@@ -316,8 +328,7 @@ class FabricOrg {
     /**
      * 设置 ca 配置
      *
-     * @param caProperties
-     *            ca 配置
+     * @param caProperties ca 配置
      */
     public void setCAProperties(Properties caProperties) {
         this.caProperties = caProperties;
@@ -335,8 +346,7 @@ class FabricOrg {
     /**
      * 设置联盟单节点管理员用户
      *
-     * @param peerAdmin
-     *            联盟单节点管理员用户
+     * @param peerAdmin 联盟单节点管理员用户
      */
     public void setPeerAdmin(FabricUser peerAdmin) {
         this.peerAdmin = peerAdmin;
@@ -354,8 +364,7 @@ class FabricOrg {
     /**
      * 设置域名名称
      *
-     * @param domainName
-     *            域名名称
+     * @param domainName 域名名称
      */
     public void setDomainName(String domainName) {
         this.domainName = domainName;
@@ -373,16 +382,16 @@ class FabricOrg {
     /**
      * 从指定路径中获取后缀为 _sk 的文件，且该路径下有且仅有该文件
      *
-     * @param directory
-     *            指定路径
+     * @param directory 指定路径
      * @return File
      */
     private File findFileSk(File directory) {
         File dd = new File("");//设定为当前文件夹
-        try{
+        try {
             System.out.println(dd.getCanonicalPath());//获取标准的路径
             System.out.println(directory.getAbsolutePath());//获取绝对路径
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
         File[] matches = directory.listFiles((dir, name) -> name.endsWith("_sk"));
         if (null == matches) {
             throw new RuntimeException(String.format("Matches returned null does %s directory exist?", directory.getAbsoluteFile().getName()));

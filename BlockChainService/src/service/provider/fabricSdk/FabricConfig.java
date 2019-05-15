@@ -1,26 +1,36 @@
-package service.fabricSdk;
+package service.provider.fabricSdk;
 
 import java.io.File;
 
 import org.apache.log4j.Logger;
 
-import service.fabricSdk.bean.Chaincode;
-import service.fabricSdk.bean.Orderers;
-import service.fabricSdk.bean.Peers;
+import service.provider.fabricSdk.bean.Chaincode;
+import service.provider.fabricSdk.bean.Orderers;
+import service.provider.fabricSdk.bean.Peers;
 
 public class FabricConfig {
 
     private static Logger log = Logger.getLogger(FabricConfig.class);
 
-    /** 节点服务器对象 */
+    /**
+     * 节点服务器对象
+     */
     private Peers peers;
-    /** 排序服务器对象 */
+    /**
+     * 排序服务器对象
+     */
     private Orderers orderers;
-    /** 智能合约对象 */
+    /**
+     * 智能合约对象
+     */
     private Chaincode chaincode;
-    /** channel-artifacts所在路径：默认channel-artifacts所在路径/xxx/WEB-INF/classes/fabric/channel-artifacts/ */
+    /**
+     * channel-artifacts所在路径：默认channel-artifacts所在路径/xxx/WEB-INF/classes/fabric/channel-artifacts/
+     */
     private String channelArtifactsPath;
-    /** crypto-config所在路径：默认crypto-config所在路径/xxx/WEB-INF/classes/fabric/crypto-config/ */
+    /**
+     * crypto-config所在路径：默认crypto-config所在路径/xxx/WEB-INF/classes/fabric/crypto-config/
+     */
     private String cryptoConfigPath;
     private boolean registerEvent = false;
 

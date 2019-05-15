@@ -1,13 +1,17 @@
-package service.fabricSdk.bean;
+package service.provider.fabricSdk.bean;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Orderers {
 
-    /** orderer 排序服务器所在根域名 */
+    /**
+     * orderer 排序服务器所在根域名
+     */
     private String ordererDomainName; // anti-moth.com
-    /** orderer 排序服务器集合 */
+    /**
+     * orderer 排序服务器集合
+     */
     private List<Orderer> orderers;
 
     public Orderers() {
@@ -22,25 +26,32 @@ public class Orderers {
         this.ordererDomainName = ordererDomainName;
     }
 
-    /** 新增排序服务器 */
+    /**
+     * 新增排序服务器
+     */
     public void addOrderer(String name, String location) {
         orderers.add(new Orderer(name, location));
     }
 
-    /** 获取排序服务器集合 */
+    /**
+     * 获取排序服务器集合
+     */
     public List<Orderer> get() {
         return orderers;
     }
 
     /**
      * 排序服务器对象
-     *
      */
     public class Orderer {
 
-        /** orderer 排序服务器的域名 */
+        /**
+         * orderer 排序服务器的域名
+         */
         private String ordererName;
-        /** orderer 排序服务器的访问地址 */
+        /**
+         * orderer 排序服务器的访问地址
+         */
         private String ordererLocation;
 
         public Orderer(String ordererName, String ordererLocation) {
