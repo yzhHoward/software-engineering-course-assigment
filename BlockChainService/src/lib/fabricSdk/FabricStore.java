@@ -1,4 +1,4 @@
-package service.fabricSdk;
+package lib.fabricSdk;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,7 +59,7 @@ class FabricStore {
     /**
      * 获取与名称相关的值
      *
-     * @param 名称
+     * @param name
      * @return 相关值
      */
     public String getValue(String name) {
@@ -88,8 +88,8 @@ class FabricStore {
     /**
      * 用给定的名称获取用户
      *
-     * @param 名称
-     * @param 组织
+     * @param name
+     * @param org
      *
      * @return 用户
      */

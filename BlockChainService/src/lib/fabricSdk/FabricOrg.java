@@ -1,4 +1,4 @@
-package service.fabricSdk;
+package lib.fabricSdk;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +14,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import lib.fabricSdk.bean.Orderers;
+import lib.fabricSdk.bean.Peers;
 import org.apache.log4j.Logger;
 import org.hyperledger.fabric.sdk.Peer;
 import org.hyperledger.fabric.sdk.User;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
-
-import service.fabricSdk.bean.Orderers;
-import service.fabricSdk.bean.Peers;
 
 
 class FabricOrg {

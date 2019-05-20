@@ -1,4 +1,4 @@
-package service.fabricSdk;
+package lib.fabricSdk;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

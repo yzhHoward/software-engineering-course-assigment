@@ -1,7 +1,7 @@
-package service.api;
+package api;
 
-import service.utils.exceptions.ReadFailureException;
-import service.utils.exceptions.WriteFailureException;
+import utils.exceptions.ReadFailureException;
+import utils.exceptions.WriteFailureException;
 
 public interface BlockChainService {
     /*
@@ -24,7 +24,6 @@ public interface BlockChainService {
             String dateTime,
             boolean recordType,
             double sum
-
     );
     */
 

@@ -1,8 +1,11 @@
-package service.fabricSdk;
+package lib.fabricSdk;
 
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
+import lib.fabricSdk.bean.Chaincode;
+import lib.fabricSdk.bean.Orderers;
+import lib.fabricSdk.bean.Peers;
 import org.apache.log4j.Logger;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
@@ -11,10 +14,6 @@ import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.hyperledger.fabric.sdk.exception.TransactionException;
 import org.hyperledger.fabric.sdk.security.CryptoSuite;
 
-
-import service.fabricSdk.bean.Chaincode;
-import service.fabricSdk.bean.Orderers;
-import service.fabricSdk.bean.Peers;
 
 import java.io.File;
 import java.io.IOException;

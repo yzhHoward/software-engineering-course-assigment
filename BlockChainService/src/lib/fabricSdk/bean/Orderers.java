@@ -1,4 +1,4 @@
-package service.fabricSdk.bean;
+package lib.fabricSdk.bean;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package service.fabricSdk.bean;
+package lib.fabricSdk.bean;
 
 public class Chaincode {
 

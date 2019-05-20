@@ -1,12 +1,11 @@
-package service.fabricSdk;
+package lib.fabricSdk;
 
 import java.io.File;
 
+import lib.fabricSdk.bean.Chaincode;
+import lib.fabricSdk.bean.Orderers;
+import lib.fabricSdk.bean.Peers;
 import org.apache.log4j.Logger;
-
-import service.fabricSdk.bean.Chaincode;
-import service.fabricSdk.bean.Orderers;
-import service.fabricSdk.bean.Peers;
 
 public class FabricConfig {
 

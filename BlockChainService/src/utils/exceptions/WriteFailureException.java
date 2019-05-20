@@ -1,4 +1,4 @@
-package service.utils.exceptions;
+package utils.exceptions;
 
 public class WriteFailureException extends Exception{
 }
