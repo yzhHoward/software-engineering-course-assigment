@@ -5,19 +5,19 @@ public class Chaincode {
     /**
      * 当前将要访问的智能合约所属频道名称
      */
-    private String channelName; // ffetest
+    private String channelName;
     /**
      * 智能合约名称
      */
-    private String chaincodeName; // ffetestcc
+    private String chaincodeName;
     /**
      * 智能合约安装路径
      */
-    private String chaincodePath; // github.com/hyperledger/fabric/xxx/chaincode/go/example/test
+    private String chaincodePath;
     /**
      * 智能合约版本号
      */
-    private String chaincodeVersion; // 1.0
+    private String chaincodeVersion;
     /**
      * 执行智能合约操作等待时间
      */
@@ -74,5 +74,4 @@ public class Chaincode {
     public void setDeployWatiTime(int deployWatiTime) {
         this.deployWatiTime = deployWatiTime;
     }
-
 }

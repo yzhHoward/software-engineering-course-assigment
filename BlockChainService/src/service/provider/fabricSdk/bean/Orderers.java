@@ -8,7 +8,7 @@ public class Orderers {
     /**
      * orderer 排序服务器所在根域名
      */
-    private String ordererDomainName; // anti-moth.com
+    private String ordererDomainName;
     /**
      * orderer 排序服务器集合
      */
@@ -44,7 +44,6 @@ public class Orderers {
      * 排序服务器对象
      */
     public class Orderer {
-
         /**
          * orderer 排序服务器的域名
          */
@@ -75,7 +74,5 @@ public class Orderers {
         public void setOrdererLocation(String ordererLocation) {
             this.ordererLocation = ordererLocation;
         }
-
     }
-
 }
