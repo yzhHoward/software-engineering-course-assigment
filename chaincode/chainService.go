@@ -59,6 +59,15 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) pb.Response 
 	return shim.Error("Invalid Smart Contract function name")
 }
 
+func get_user_info_key(username string) string {
+	return "<username>" + username
+}
+
+func get_record_key(record_id string) string {
+	// return "<record_key>" + strconv.FormatInt(record_id, 10)
+	return "<record_key>" + record_id
+}
+
 func (t *SmartContract) insert_user_info(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	// args[0]: username
 	// args[1]: message
@@ -71,7 +80,7 @@ func (t *SmartContract) insert_user_info(stub shim.ChaincodeStubInterface, args 
 	user_info_as_bytes, other_info := json.Marshal(user_info)
 	fmt.Println(other_info)
 	fmt.Println(user_info_as_bytes)
-	err := stub.PutState(args[0], user_info_as_bytes)
+	err := stub.PutState(get_record_key(args[0]), user_info_as_bytes)
 	fmt.Println(err)
 	return shim.Success(nil)
 }
@@ -96,7 +105,7 @@ func (t *SmartContract) insert_record(stub shim.ChaincodeStubInterface, args []s
 	user_info_as_bytes, other_info := json.Marshal(record)
 	fmt.Println(other_info)
 	fmt.Println(user_info_as_bytes)
-	err := stub.PutState(args[0], user_info_as_bytes)
+	err := stub.PutState(get_user_info_key(args[0]), user_info_as_bytes)
 	fmt.Println(err)
 	return shim.Success(nil)
 }
