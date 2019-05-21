@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Class-Path: netty-codec-http-4.1.22.Final.jar spring-core-5.0.5.RELEAS
+ E.jar guava-20.0.jar commons-io-2.6.jar netty-handler-4.1.22.Final.ja
+ r log4j-1.2.17.jar commons-logging-1.2.jar zookeeper-3.4.10.jar sprin
+ g-expression-5.0.5.RELEASE.jar grpc-stub-1.12.0.jar netty-codec-4.1.2
+ 2.Final.jar dubbo-2.6.1.jar commons-codec-1.10.jar commons-math3-3.6.
+ 1.jar grpc-context-1.12.0.jar jline-0.9.94.jar netty-handler-proxy-4.
+ 1.22.Final.jar netty-buffer-4.1.22.Final.jar commons-compress-1.16.1.
+ jar spring-jcl-5.0.5.RELEASE.jar objenesis-2.6.jar BlockChain-api.jar
+  javax.json-api-1.1.2.jar javassist-3.20.0-GA.jar httpclient-4.5.5.ja
+ r jsr305-3.0.0.jar grpc-core-1.12.0.jar error_prone_annotations-2.1.2
+ .jar curator-framework-4.0.1.jar netty-transport-4.1.22.Final.jar bcp
+ rov-jdk15on-1.59.jar fabric-sdk-java-1.1.0.jar slf4j-log4j12-1.6.1.ja
+ r netty-codec-http2-4.1.22.Final.jar opencensus-contrib-grpc-metrics-
+ 0.11.0.jar netty-resolver-4.1.22.Final.jar snakeyaml-1.21.jar httpcor
+ e-4.4.9.jar protobuf-java-util-3.5.1.jar opencensus-api-0.11.0.jar gr
+ pc-netty-1.12.0.jar servlet-api-2.5.jar milagro-crypto-java-0.1.0.jar
+  grpc-protobuf-1.12.0.jar netty-3.10.5.Final.jar netty-3.2.5.Final.ja
+ r slf4j-api-1.6.1.jar spring-beans-5.0.5.RELEASE.jar gson-2.7.jar grp
+ c-protobuf-lite-1.12.0.jar spring-context-5.0.5.RELEASE.jar commons-c
+ li-1.4.jar netty-codec-socks-4.1.22.Final.jar proto-google-common-pro
+ tos-1.0.0.jar bcpkix-jdk15on-1.59.jar curator-client-4.0.1.jar netty-
+ common-4.1.22.Final.jar protobuf-java-3.5.1.jar spring-aop-5.0.5.RELE
+ ASE.jar netty-tcnative-boringssl-static-2.0.8.Final.jar javax.json-1.
+ 1.2.jar
+Main-Class: blockChainService.Launcher
+

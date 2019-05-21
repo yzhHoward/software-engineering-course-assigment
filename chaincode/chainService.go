@@ -1,10 +1,10 @@
-// 参考https://www.cnblogs.com/studyzy/p/7360733.html和之前的go文件编写
+// 参考 https://www.cnblogs.com/studyzy/p/7360733.html 和之前的go文件编写
 // 这个go文件叫什么、放在哪里都无所谓，在Java里调用即可
 package main
 
 import (
-   "github.com/hyperledger/fabric/core/chaincode/shim"
-   pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/hyperledger/fabric/core/chaincode/shim"
+	pb "github.com/hyperledger/fabric/protos/peer"
    "fmt"
 )
 
