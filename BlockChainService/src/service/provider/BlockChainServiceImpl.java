@@ -10,7 +10,7 @@ import java.util.Map;
 public class BlockChainServiceImpl implements BlockChainService {
     @Override
     public void invokeUserInformation(String userName, String encrypted_message) throws WriteFailureException {
-        
+
     }
 
     @Override
@@ -72,7 +72,6 @@ public class BlockChainServiceImpl implements BlockChainService {
     public String QueryTransaction(String recordId) {
         System.out.println("QueryTransaction " + recordId);
         return Query(recordId, QUERY_TRA_FUNC);
-
     }
 
     public String QueryBalanceChange(String recordId) {
@@ -83,7 +82,7 @@ public class BlockChainServiceImpl implements BlockChainService {
     private String Query(String recordId, String queryFunc) {
         try {
             if (fabricmanager == null) fabricmanager = FabricManager.obtain();
-            if (chaincodeManager == null) chaincodeManager = fabricmanager.getManager();
+            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
             String args[] = new String[1];
             args[0] = recordId;
             Map<String, String> resultMap = chaincodeManager.query(queryFunc, args);
@@ -110,7 +109,7 @@ public class BlockChainServiceImpl implements BlockChainService {
         System.out.println("InsertTransaction");
         try {
             if (fabricmanager == null) fabricmanager = FabricManager.obtain();
-            if (chaincodeManager == null) chaincodeManager = fabricmanager.getManager();
+            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
             String args[] = new String[8];
             args[0] = recordId;
             args[1] = Integer.toString(paymentInstitutionId);
@@ -144,7 +143,7 @@ public class BlockChainServiceImpl implements BlockChainService {
         System.out.println("InsertBalanceChange");
         try {
             if (fabricmanager == null) fabricmanager = FabricManager.obtain();
-            if (chaincodeManager == null) chaincodeManager = fabricmanager.getManager();
+            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
             String args[] = new String[6];
             args[0] = recordId;
             args[1] = Integer.toString(institutionId);

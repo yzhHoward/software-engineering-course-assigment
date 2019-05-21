@@ -207,7 +207,7 @@ class FabricUser implements User, Serializable {
     private FabricUser restoreState() {
         String memberStr = keyValStore.getValue(keyValStoreName);
         if (null != memberStr) {
-            // 用户在键值存储中被找到，因此恢复状�?��??
+            // 用户在键值存储中被找到，因此恢复状态
             byte[] serialized = Hex.decode(memberStr);
             ByteArrayInputStream bis = new ByteArrayInputStream(serialized);
             try {
@@ -235,5 +235,4 @@ class FabricUser implements User, Serializable {
         System.out.println("toKeyValStoreName = " + "user." + name + org);
         return "user." + name + org;
     }
-
 }

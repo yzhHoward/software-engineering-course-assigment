@@ -11,15 +11,15 @@ public class Peers {
     /**
      * 当前指定的组织名称
      */
-    private String orgName; // Org1
+    private String orgName;
     /**
      * 当前指定的组织名称
      */
-    private String orgMSPID; // Org1MSP
+    private String orgMSPID;
     /**
      * 当前指定的组织所在根域名
      */
-    private String orgDomainName; //org1.example.com
+    private String orgDomainName;
     /**
      * orderer 排序服务器集合
      */
@@ -75,23 +75,23 @@ public class Peers {
         /**
          * 当前指定的组织节点域名
          */
-        private String peerName; // peer0.org1.example.com
+        private String peerName;
         /**
          * 当前指定的组织节点事件域名
          */
-        private String peerEventHubName; // peer0.org1.example.com
+        private String peerEventHubName;
         /**
          * 当前指定的组织节点访问地址
          */
-        private String peerLocation; // grpc://110.131.116.21:7051
+        private String peerLocation;
         /**
          * 当前指定的组织节点事件监听访问地址
          */
-        private String peerEventHubLocation; // grpc://110.131.116.21:7053
+        private String peerEventHubLocation;
         /**
          * 当前指定的组织节点ca访问地址
          */
-        private String caLocation; // http://110.131.116.21:7054
+        private String caLocation;
         /**
          * 当前peer是否增加Event事件处理
          */
@@ -152,7 +152,5 @@ public class Peers {
         public void addEventHub(boolean addEventHub) {
             this.addEventHub = addEventHub;
         }
-
     }
-
 }

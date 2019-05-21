@@ -21,7 +21,7 @@ import org.hyperledger.fabric.sdk.exception.TransactionException;
 public class FabricManager {
 
     //    private static Logger log = Logger.getLogger(ChaincodeManager.class);
-    private ChaincodeManager manager;
+    private ChaincodeManager chaincodeManager;
 
     private static FabricManager instance = null;
 
@@ -39,7 +39,7 @@ public class FabricManager {
 
     private FabricManager()
             throws CryptoException, Exception, InvalidArgumentException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, TransactionException, IOException {
-        manager = new ChaincodeManager(getConfig());
+        chaincodeManager = new ChaincodeManager(getConfig());
     }
 
     /**
@@ -47,8 +47,8 @@ public class FabricManager {
      *
      * @return 节点服务器管理器
      */
-    public ChaincodeManager getManager() {
-        return manager;
+    public ChaincodeManager getChaincodeManager() {
+        return chaincodeManager;
     }
 
     /**
@@ -84,6 +84,7 @@ public class FabricManager {
         peers.setOrgMSPID("Org1MSP");
         peers.setOrgDomainName("org1.example.com");
         peers.addPeer("peer0.org1.example.com", "peer0.org1.example.com", "grpc://0.0.0.0:7051", "grpc://0.0.0.0:7053", "http://0.0.0.0:7054");
+        //TODO: add a new peer
         return peers;
     }
 
@@ -142,5 +143,4 @@ public class FabricManager {
         return directory.getPath() + "/crypto-config/";
 //        return "../basic-network/crypto-config";
     }
-
 }
