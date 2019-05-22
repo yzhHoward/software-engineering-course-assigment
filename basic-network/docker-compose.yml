@@ -161,10 +161,9 @@ services:
     command: /bin/bash
     volumes:
         - /var/run/:/host/var/run/
-        - ./../chaincode/:/opt/gopath/src/github.com/
+        - ./../chaincode:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode/
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-        - ./start-channel.sh:/opt/gopath/src/github.com/hyperledger/fabric/start-channel.sh
-        - ./config:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+        - ./config:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts/
     networks:
         - basic
     depends_on:
