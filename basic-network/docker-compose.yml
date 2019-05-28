@@ -120,6 +120,7 @@ services:
     # command: peer node start --peer-chaincodedev=true
     ports:
       - 7056:7056
+      - 7057:7057
     volumes:
         - /var/run/:/host/var/run/
         - ./crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/msp/peer
