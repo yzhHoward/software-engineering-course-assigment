@@ -26,17 +26,6 @@ Organizations:
 
         # MSPDir is the filesystem path which contains the MSP configuration
         MSPDir: crypto-config/ordererOrganizations/example.com/msp
-        
-        Policies:
-            Readers:
-                Type: Signature
-                Rule: "OR('OrdererMSP.member')"
-            Writers:
-                Type: Signature
-                Rule: "OR('OrdererMSP.member')"
-            Admins:
-                Type: Signature
-                Rule: "OR('OrdererMSP.admin')"
 
     - &Org1
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -47,20 +36,6 @@ Organizations:
         ID: Org1MSP
 
         MSPDir: crypto-config/peerOrganizations/org1.example.com/msp
-        
-        # Policies defines the set of policies at this level of the config tree
-        # For organization policies, their canonical path is usually
-        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
-        Policies:
-            Readers:
-                Type: Signature
-                Rule: "OR('Org1MSP.admin', 'Org1MSP.peer', 'Org1MSP.client')"
-            Writers:
-                Type: Signature
-                Rule: "OR('Org1MSP.admin', 'Org1MSP.client')"
-            Admins:
-                Type: Signature
-                Rule: "OR('Org1MSP.admin')"
 
         # leave this flag set to true.  
         AnchorPeers:
@@ -69,38 +44,6 @@ Organizations:
             # encoded in the genesis block in the Application section context
             - Host: peer0.org1.example.com
               Port: 7051
-
-    - &Org2
-        # DefaultOrg defines the organization which is used in the sampleconfig
-        # of the fabric.git development environment
-        Name: Org2MSP
-
-        # ID to load the MSP definition as
-        ID: Org2MSP
-
-        MSPDir: crypto-config/peerOrganizations/org2.example.com/msp
-        
-        # Policies defines the set of policies at this level of the config tree
-        # For organization policies, their canonical path is usually
-        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
-        Policies:
-            Readers:
-                Type: Signature
-                Rule: "OR('Org2MSP.admin', 'Org2MSP.peer', 'Org2MSP.client')"
-            Writers:
-                Type: Signature
-                Rule: "OR('Org2MSP.admin', 'Org2MSP.client')"
-            Admins:
-                Type: Signature
-                Rule: "OR('Org2MSP.admin')"
-
-        # leave this flag set to true.  
-        AnchorPeers:
-            # AnchorPeers defines the location of peers which can be used
-            # for cross org gossip communication.  Note, this value is only
-            # encoded in the genesis block in the Application section context
-            - Host: peer0.org2.example.com
-              Port: 7056
 
 Capabilities:
     Channel: &ChannelCapabilities
@@ -124,18 +67,6 @@ Application: &ApplicationDefaults
 
     # Organizations is the list of orgs which are defined as participants on
     # the application side of the network
-    Organizations:
-    
-    Policies:
-        Readers:
-            Type: ImplicitMeta
-            Rule: "ANY Readers"
-        Writers:
-            Type: ImplicitMeta
-            Rule: "ANY Writers"
-        Admins:
-            Type: ImplicitMeta
-            Rule: "MAJORITY Admins"
 
     Capabilities:
         <<: *ApplicationCapabilities
@@ -183,36 +114,11 @@ Orderer: &OrdererDefaults
 
     # Organizations is the list of orgs which are defined as participants on
     # the orderer side of the network
-    Organizations:
-
-    Policies:
-        Readers:
-            Type: ImplicitMeta
-            Rule: "ANY Readers"
-        Writers:
-            Type: ImplicitMeta
-            Rule: "ANY Writers"
-        Admins:
-            Type: ImplicitMeta
-            Rule: "MAJORITY Admins"
-        BlockValidation:
-            Type: ImplicitMeta
-            Rule: "ANY Writers"
 
     Capabilities:
         <<: *OrdererCapabilities
 
 Channel: &ChannelDefaults
-    Policies:
-        Readers:
-            Type: ImplicitMeta
-            Rule: "ANY Readers"
-        Writers:
-            Type: ImplicitMeta
-            Rule: "ANY Writers"
-        Admins:
-            Type: ImplicitMeta
-            Rule: "MAJORITY Admins"
 
     Capabilities:
         <<: *ChannelCapabilities
@@ -236,12 +142,10 @@ Profiles:
             SampleConsortium:
                 Organizations:
                     - *Org1
-                    - *Org2
     OneOrgChannel:
         Consortium: SampleConsortium
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
-                - *Org2
 

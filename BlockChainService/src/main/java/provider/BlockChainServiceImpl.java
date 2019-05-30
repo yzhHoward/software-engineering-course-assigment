@@ -137,6 +137,34 @@ public class BlockChainServiceImpl implements BlockChainService {
         return result;
     }
 
+    private static String QUERY_TRA_FUNC = "queryTransaction";
+
+    private String query(String queryFunc, String arg) {
+        try {
+            if (fabricmanager == null) {
+                fabricmanager = FabricManager.obtain();
+            }
+            if (chaincodeManager == null) {
+                chaincodeManager = fabricmanager.getChaincodeManager();
+            }
+            String[] args = new String[1];
+            args[0] = arg;
+            Map<String, String> resultMap = chaincodeManager.query(queryFunc, args);
+            if (resultMap.get("code").equals("success")) {
+                return resultMap.get("data");
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            //log.debug(e.getMessage());
+            return null;
+        }
+    }
+
+    private static String QUERY_BC_FUNC = "queryBalanceChange";
+    private static String INSERT_TRA_FUNC = "createTransaction";
+    private static String INSERT_BC_FUNC = "createBalanceChange";
+
     private boolean insert(String invokeFunc, String arg, String encrypted_message) {
         try {
             if (fabricmanager == null) {
@@ -152,22 +180,61 @@ public class BlockChainServiceImpl implements BlockChainService {
             return resultMap.get("code").equals("success");
         } catch (Exception e) {
             //    log.debug(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
 
-    private String query(String queryFunc, String arg) {
+    public boolean InsertTransaction(
+            String recordId,
+            int paymentInstitutionId,
+            int paymentUserId,
+            int collectionInstitutionId,
+            int collectionUserId,
+            String dateTime,
+            boolean transactionType,
+            double sum) {
+        System.out.println("InsertTransaction");
         try {
-            if (fabricmanager == null) {
-                fabricmanager = FabricManager.obtain();
+            if (fabricmanager == null) fabricmanager = FabricManager.obtain();
+            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
+            String[] args = new String[8];
+            args[0] = recordId;
+            args[1] = Integer.toString(paymentInstitutionId);
+            args[2] = Integer.toString(paymentUserId);
+            args[3] = Integer.toString(collectionInstitutionId);
+            args[4] = Integer.toString(collectionUserId);
+            args[5] = dateTime;
+            args[6] = Boolean.toString(transactionType);
+            args[7] = Double.toString(sum);
+
+            Map<String, String> resultMap = chaincodeManager.invoke("queryTransaction", args);
+            if (resultMap.get("code") == "success") {
+                System.out.println("InsertTransaction success " + recordId);
+                return true;
+            } else {
+                return false;
             }
-            if (chaincodeManager == null) {
-                chaincodeManager = fabricmanager.getChaincodeManager();
-            }
+        } catch (Exception e) {
+            //    log.debug(e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public String QueryTransaction(String recordId) {
+        System.out.println("QueryTransaction " + recordId);
+        return Query(recordId, QUERY_TRA_FUNC);
+    }
+
+    private String Query(String recordId, String queryFunc) {
+        try {
+            if (fabricmanager == null) fabricmanager = FabricManager.obtain();
+            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
             String[] args = new String[1];
-            args[0] = arg;
+            args[0] = recordId;
             Map<String, String> resultMap = chaincodeManager.query(queryFunc, args);
-            if (resultMap.get("code").equals("success")) {
+            if (resultMap.get("code") == "success") {
                 return resultMap.get("data");
             } else {
                 return null;
