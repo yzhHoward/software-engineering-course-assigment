@@ -143,7 +143,7 @@ public class BlockChainServiceImpl implements BlockChainService {
                 fabricmanager = FabricManager.obtain();
             }
             if (chaincodeManager == null) {
-                chaincodeManager = fabricmanager.getChaincodeManager();
+                chaincodeManager = fabricmanager.getCh aincodeManager();
             }
             String[] args = new String[2];
             args[0] = arg;

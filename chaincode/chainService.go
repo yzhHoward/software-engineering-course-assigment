@@ -30,25 +30,25 @@ func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) pb.Response {
 func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) pb.Response {
 	function, args := APIstub.GetFunctionAndParameters()
 
-	if function == "insert_user_info" {
+	if function == "insertUserInfo" {
 		return s.insert_user_info(APIstub, args)
-	} else if function == "query_user_info" {
+	} else if function == "queryUserInfo" {
 		return s.query_user_info(APIstub, args)
-	} else if function == "query_contract_record" {
+	} else if function == "queryContractRecord" {
 		return s.query_record(APIstub, args)
-	} else if function == "query_financing_apply_record" {
+	} else if function == "queryFinancingApplyRecord" {
 		return s.query_record(APIstub, args)
-	} else if function == "query_loan_record" {
+	} else if function == "queryLoanRecord" {
 		return s.query_record(APIstub, args)
-	} else if function == "query_repayment_record" {
+	} else if function == "queryRepaymentRecord" {
 		return s.query_record(APIstub, args)
-	} else if function == "insert_contract_record" {
+	} else if function == "insertRontractRecord" {
 		return s.insert_record(APIstub, args)
-	} else if function == "insert_financing_apply_record" {
+	} else if function == "insertFinancingApplyRecord" {
 		return s.insert_record(APIstub, args)
-	} else if function == "insert_loan_record" {
+	} else if function == "insertLoanRecord" {
 		return s.insert_record(APIstub, args)
-	} else if function == "insert_repayment_record" {
+	} else if function == "insertRepaymentRecord" {
 		return s.insert_record(APIstub, args)
 	} else if function == "initedger" {
 		return s.initLedger(APIstub)
