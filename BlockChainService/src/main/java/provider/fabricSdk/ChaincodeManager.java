@@ -1,8 +1,6 @@
 package provider.fabricSdk;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-import org.apache.log4j.Logger;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
@@ -26,7 +24,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class ChaincodeManager {
 
-    private static Logger log = Logger.getLogger(ChaincodeManager.class);
+    //private static Logger log = Logger.getLogger(ChaincodeManager.class);
 
     private FabricConfig config;
     private Orderers orderers;
@@ -47,9 +45,9 @@ public class ChaincodeManager {
         chaincode = this.config.getChaincode();
 
         client = HFClient.createNewInstance();
-        log.debug("Create instance of HFClient");
+        //log.debug("Create instance of HFClient");
         client.setCryptoSuite(CryptoSuite.Factory.getCryptoSuite());
-        log.debug("Set Crypto Suite of HFClient");
+        //log.debug("Set Crypto Suite of HFClient");
 
         fabricOrg = getFabricOrg();
         channel = getChannel();
@@ -66,7 +64,7 @@ public class ChaincodeManager {
 
         // Get Org1 from configuration
         FabricOrg fabricOrg = new FabricOrg(peers, orderers, fabricStore, config.getCryptoConfigPath());
-        log.debug("Get FabricOrg");
+        //log.debug("Get FabricOrg");
         return fabricOrg;
     }
 
@@ -79,7 +77,7 @@ public class ChaincodeManager {
     private Channel getChannel(FabricOrg fabricOrg, HFClient client)
             throws InvalidArgumentException, TransactionException {
         Channel channel = client.newChannel(chaincode.getChannelName());
-        log.debug("Get Chain " + chaincode.getChannelName());
+        //log.debug("Get Chain " + chaincode.getChannelName());
 
 //        channel.setTransactionWaitTime(chaincode.getInvokeWatiTime());
 //        channel.setDeployWaitTime(chaincode.getDeployWatiTime());
@@ -125,30 +123,30 @@ public class ChaincodeManager {
                     client.newOrderer(orderers.get().get(i).getOrdererName(), fabricOrg.getOrdererLocation(orderers.get().get(i).getOrdererName()), ordererProperties));
         }
 
-        log.debug("channel.isInitialized() = " + channel.isInitialized());
+        //log.debug("channel.isInitialized() = " + channel.isInitialized());
         if (!channel.isInitialized()) {
             channel.initialize();
         }
         if (config.isRegisterEvent()) {
             channel.registerBlockListener(event -> {
                 // TODO
-                log.debug("========================Event事件监听开始========================");
+                //log.debug("========================Event事件监听开始========================");
                 try {
-                    log.debug("event.getChannelId() = " + event.getChannelId());
+                    //log.debug("event.getChannelId() = " + event.getChannelId());
                     //log.debug("event.getEvent().getChaincodeEvent().getPayload().toStringUtf8() = " + event.getEvent().getChaincodeEvent().getPayload().toStringUtf8());
-                    log.debug("event.getBlock().getData().getDataList().size() = " + event.getBlock().getData().getDataList().size());
+                    //log.debug("event.getBlock().getData().getDataList().size() = " + event.getBlock().getData().getDataList().size());
                     ByteString byteString = event.getBlock().getData().getData(0);
                     String result = byteString.toStringUtf8();
-                    log.debug("byteString.toStringUtf8() = " + result);
+                    //log.debug("byteString.toStringUtf8() = " + result);
 
                     String[] r1 = result.split("END CERTIFICATE");
                     String rr = r1[2];
-                    log.debug("rr = " + rr);
-                } catch (InvalidProtocolBufferException e) {
+                    //log.debug("rr = " + rr);
+                } catch (Exception e) {
                     // TODO
                     e.printStackTrace();
                 }
-                log.debug("========================Event事件监听结束========================");
+                //log.debug("========================Event事件监听结束========================");
             });
         }
         return channel;
@@ -198,25 +196,25 @@ public class ChaincodeManager {
 
         Collection<Set<ProposalResponse>> proposalConsistencySets = SDKUtils.getProposalConsistencySets(transactionPropResp);
         if (proposalConsistencySets.size() != 1) {
-            log.error("Expected only one set of consistent proposal responses but got " + proposalConsistencySets.size());
+            //log.error("Expected only one set of consistent proposal responses but got " + proposalConsistencySets.size());
         }
 
         if (failed.size() > 0) {
             ProposalResponse firstTransactionProposalResponse = failed.iterator().next();
-            log.error("Not enough endorsers for inspect:" + failed.size() + " endorser error: " + firstTransactionProposalResponse.getMessage() + ". Was verified: "
-                    + firstTransactionProposalResponse.isVerified());
+            //log.error("Not enough endorsers for inspect:" + failed.size() + " endorser error: " + firstTransactionProposalResponse.getMessage() + ". Was verified: "
+            //+ firstTransactionProposalResponse.isVerified());
             resultMap.put("code", "error");
             resultMap.put("data", firstTransactionProposalResponse.getMessage());
             return resultMap;
         } else {
-            log.info("Successfully received transaction proposal responses.");
+            //log.info("Successfully received transaction proposal responses.");
             ProposalResponse resp = transactionPropResp.iterator().next();
             byte[] x = resp.getChaincodeActionResponsePayload();
             String resultAsString = null;
             if (x != null) {
                 resultAsString = new String(x, UTF_8);
             }
-            log.info("resultAsString = " + resultAsString);
+            //log.info("resultAsString = " + resultAsString);
             channel.sendTransaction(successful);
             resultMap.put("code", "success");
             resultMap.put("data", resultAsString);
@@ -259,15 +257,15 @@ public class ChaincodeManager {
         Collection<ProposalResponse> queryProposals = channel.queryByChaincode(queryByChaincodeRequest, channel.getPeers());
         for (ProposalResponse proposalResponse : queryProposals) {
             if (!proposalResponse.isVerified() || proposalResponse.getStatus() != ProposalResponse.Status.SUCCESS) {
-                log.debug("Failed query proposal from peer " + proposalResponse.getPeer().getName() + " status: " + proposalResponse.getStatus() + ". Messages: "
-                        + proposalResponse.getMessage() + ". Was verified : " + proposalResponse.isVerified());
+                //log.debug("Failed query proposal from peer " + proposalResponse.getPeer().getName() + " status: " + proposalResponse.getStatus() + ". Messages: "
+                //+ proposalResponse.getMessage() + ". Was verified : " + proposalResponse.isVerified());
                 resultMap.put("code", "error");
                 resultMap.put("data", "Failed query proposal from peer " + proposalResponse.getPeer().getName() + " status: " + proposalResponse.getStatus() + ". Messages: "
                         + proposalResponse.getMessage() + ". Was verified : " + proposalResponse.isVerified());
             } else {
                 payload = proposalResponse.getProposalResponse().getResponse().getPayload().toStringUtf8();
-                log.debug("Query payload from peer: " + proposalResponse.getPeer().getName());
-                log.debug("" + payload);
+                //log.debug("Query payload from peer: " + proposalResponse.getPeer().getName());
+                //log.debug("" + payload);
                 resultMap.put("code", "success");
                 resultMap.put("data", payload);
             }

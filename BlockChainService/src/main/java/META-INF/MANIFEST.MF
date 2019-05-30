@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Class-Path: bcprov-jdk15on-1.60.jar error_prone_annotations-2.2.0.jar 
+ grpc-protobuf-lite-1.17.1.jar j2objc-annotations-1.1.jar commons-math
+ 3-3.6.1.jar bcpkix-jdk15on-1.60.jar snakeyaml-1.23.jar netty-tcnative
+ -boringssl-static-2.0.20.Final.jar checker-compat-qual-2.5.2.jar prot
+ o-google-common-protos-1.0.0.jar javax.json-1.1.4.jar animal-sniffer-
+ annotations-1.17.jar log4j-1.2.17.jar netty-codec-socks-4.1.30.Final.
+ jar commons-io-2.6.jar netty-handler-proxy-4.1.30.Final.jar commons-c
+ odec-1.10.jar milagro-crypto-java-0.4.0.jar grpc-context-1.17.1.jar n
+ etty-codec-http2-4.1.30.Final.jar grpc-stub-1.17.1.jar opencensus-con
+ trib-grpc-metrics-0.17.0.jar grpc-core-1.17.1.jar fabric-sdk-java-1.4
+ .2.jar protobuf-java-3.6.1.jar jsr305-3.0.2.jar grpc-netty-1.17.1.jar
+  netty-common-4.1.30.Final.jar guava-26.0-android.jar opencensus-api-
+ 0.17.0.jar netty-transport-4.1.30.Final.jar netty-codec-4.1.30.Final.
+ jar netty-codec-http-4.1.30.Final.jar netty-resolver-4.1.30.Final.jar
+  apache-log4j-extras-1.2.17.jar commons-compress-1.18.jar gson-2.7.ja
+ r netty-handler-4.1.30.Final.jar protobuf-java-util-3.6.1.jar commons
+ -cli-1.4.jar commons-logging-1.2.jar httpclient-4.5.6.jar grpc-protob
+ uf-1.17.1.jar netty-buffer-4.1.30.Final.jar httpcore-4.4.10.jar
+Main-Class: Main
+

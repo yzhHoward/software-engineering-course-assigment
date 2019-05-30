@@ -14,7 +14,7 @@ public class FabricManager {
     //    private static Logger log = Logger.getLogger(ChaincodeManager.class);
     private ChaincodeManager chaincodeManager;
 
-    private FabricManager()
+    public FabricManager()
             throws Exception {
         chaincodeManager = new ChaincodeManager(getConfig());
     }
@@ -49,8 +49,8 @@ public class FabricManager {
         FabricConfig config = new FabricConfig();
         config.setOrderers(getOrderers());
         config.setPeers(getPeers());
-        config.setChaincode(getChaincode("mychannel", "chainService", "github.com", "1.4"));
-        config.setChannelArtifactsPath(getChannleArtifactsPath());
+        config.setChaincode(getChaincode("mychannel", "chainService", "github.com/hyperledger/fabric/peer/chaincode", "1.4"));
+        config.setChannelArtifactsPath(getChannelArtifactsPath());
         config.setCryptoConfigPath(getCryptoConfigPath());
         return config;
     }
@@ -73,8 +73,7 @@ public class FabricManager {
         peers.setOrgMSPID("Org1MSP");
         peers.setOrgDomainName("org1.example.com");
         peers.addPeer("peer0.org1.example.com", "peer0.org1.example.com", "grpc://0.0.0.0:7051", "grpc://0.0.0.0:7053", "http://0.0.0.0:7054");
-        //TODO: add a new peer
-        peers.addPeer("peer0.org2.example.com", "peer0.org2.example.com", "grpc://0.0.0.0:7056", "grpc://0.0.0.0:7057", "http://0.0.0.0:7054");
+        peers.addPeer("peer1.org1.example.com", "peer1.org1.example.com", "grpc://0.0.0.0:7051", "grpc://0.0.0.0:7053", "http://0.0.0.0:7054");
         return peers;
     }
 
@@ -103,13 +102,15 @@ public class FabricManager {
      *
      * @return /WEB-INF/classes/fabric/channel-artifacts/
      */
-    private String getChannleArtifactsPath() {
-        String directorys = FabricManager.class.getClassLoader().getResource("basic-network").getFile();
-//        log.debug("directorys = " + directorys);
-        File directory = new File(directorys);
+    private String getChannelArtifactsPath() {
+        //String dir = FabricManager.class.getClassLoader().getResource("basic-network").getFile();
+        String dir = System.getProperty("user.dir") + "/basic-network";
+//        log.debug("dir = " + dir);
+        File directory = new File(dir);
 //        log.debug("directory = " + directory.getPath());
 
 //        return directory.getPath() + "/channel-artifacts/";
+        System.out.println(directory.getPath() + "/config/");
         return directory.getPath() + "/config/";
 //        File directory = new File("");//设定为当前文件夹
 //        try{
@@ -125,11 +126,13 @@ public class FabricManager {
      * @return /WEB-INF/classes/fabric/crypto-config/
      */
     private String getCryptoConfigPath() {
-        String directorys = FabricManager.class.getClassLoader().getResource("basic-network").getFile();
-//        log.debug("directorys = " + directorys);
-        File directory = new File(directorys);
+        //String dir = FabricManager.class.getClassLoader().getResource("basic-network").getFile();
+        String dir = System.getProperty("user.dir") + "/basic-network";
+//        log.debug("dir = " + dir);
+        System.out.println(dir);
+        File directory = new File(dir);
 //        log.debug("directory = " + directory.getPath());
-//
+        System.out.println(directory.getPath() + "/crypto-config/");
         return directory.getPath() + "/crypto-config/";
 //        return "../basic-network/crypto-config";
     }

@@ -1,6 +1,5 @@
 package provider.fabricSdk;
 
-import org.apache.log4j.Logger;
 import provider.fabricSdk.bean.Chaincode;
 import provider.fabricSdk.bean.Orderers;
 import provider.fabricSdk.bean.Peers;
@@ -9,7 +8,7 @@ import java.io.File;
 
 public class FabricConfig {
 
-    private static Logger log = Logger.getLogger(FabricConfig.class);
+    //private static Logger log = Logger.getLogger(FabricConfig.class);
 
     /**
      * 节点服务器对象
@@ -35,9 +34,9 @@ public class FabricConfig {
 
     public FabricConfig() {
         // 默认channel-artifacts所在路径 /xxx/WEB-INF/classes/fabric/channel-artifacts/
-        channelArtifactsPath = getChannlePath() + "/channel-artifacts/";
+        channelArtifactsPath = getChannelPath() + "/channel-artifacts/";
         // 默认crypto-config所在路径 /xxx/WEB-INF/classes/fabric/crypto-config/
-        cryptoConfigPath = getChannlePath() + "/crypto-config/";
+        cryptoConfigPath = getChannelPath() + "/crypto-config/";
     }
 
     /**
@@ -45,16 +44,19 @@ public class FabricConfig {
      *
      * @return ./xxx/WEB-INF/classes/fabric/channel-artifacts/
      */
-    private String getChannlePath() {
-        String directorys = ChaincodeManager.class.getClassLoader().getResource("basic-network").getFile();
-//        String directorys = "/Users/liwei/fabric-samples/basic-network/config";
+    private String getChannelPath() {
+        //String dir = ChaincodeManager.class.getClassLoader().getResource("basic-network").getFile();
+        String dir = System.getProperty("user.dir") + "/basic-network";
+        System.out.println(dir);
+//        String dir = "/Users/liwei/fabric-samples/basic-network/config";
 
-//        String directorys = "/../basic-network/config";
-        log.debug("directorys = " + directorys);
-        File directory = new File(directorys);
-        log.debug("directory = " + directory.getPath());
+//        String dir = "/../basic-network/config";
+        //log.debug("dir = " + dir);
+        File directory = new File(dir);
+        //log.debug("directory = " + directory.getPath());
 
-        return directory.getPath();
+        //return directory.getPath();
+        return dir;
         // return "src/main/resources/fabric/channel-artifacts/";
     }
 

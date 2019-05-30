@@ -14,12 +14,13 @@ channels:
         - orderer.example.com
         peers:
             peer0.org1.example.com: {}
+            peer1.org1.example.com: {}
 organizations:
     Org1:
         mspid: Org1MSP
         peers:
         - peer0.org1.example.com
-        - peer0.org2.example.com
+        - peer1.org1.example.com
         certificateAuthorities:
         - ca.example.com
 orderers:
@@ -28,7 +29,7 @@ orderers:
 peers:
     peer0.org1.example.com:
         url: grpc://localhost:7051
-    peer0.org2.example.com:
+    peer1.org1.example.com:
         url: grpc://localhost:7056
 certificateAuthorities:
     ca.example.com:
