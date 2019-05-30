@@ -8,16 +8,16 @@ import utils.exceptions.WriteFailureException;
 import java.util.Map;
 
 public class BlockChainServiceImpl implements BlockChainService {
-    private static String INVOKE_USER_INFO = "insert_user_info";
-    private static String QUERY_USER_INFO = "query_user_info";
-    private static String INVOKE_FINANCING_APPLY = "insert_financing_apply_record";
-    private static String QUERY_FINANCING_APPLY = "query_financing_apply_record";
-    private static String INVOKE_CONTRACT = "insert_contract_record";
-    private static String QUERY_CONTRACT = "query_contract_record";
-    private static String INVOKE_LOAN = "insert_loan_record";
-    private static String QUERY_LOAN = "query_loan_record";
-    private static String INVOKE_REPAYMENT = "insert_repayment_record";
-    private static String QUERY_REPAYMENT = "query_repayment_record";
+    private static String INVOKE_USER_INFO = "insertUserInfo";
+    private static String QUERY_USER_INFO = "queryUserInfo";
+    private static String INVOKE_FINANCING_APPLY = "insertFinancingApplyRecord";
+    private static String QUERY_FINANCING_APPLY = "queryFinancingApplyRecord";
+    private static String INVOKE_CONTRACT = "insertContractRecord";
+    private static String QUERY_CONTRACT = "queryContractRecord";
+    private static String INVOKE_LOAN = "insertLoanRecord";
+    private static String QUERY_LOAN = "queryLoanRecord";
+    private static String INVOKE_REPAYMENT = "insertRepaymentRecord";
+    private static String QUERY_REPAYMENT = "queryRepaymentRecord";
 
     private FabricManager fabricmanager;
     private ChaincodeManager chaincodeManager;
@@ -26,9 +26,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public void invokeUserInformation(String userName, String encrypted_message) throws WriteFailureException {
         boolean result = insert(INVOKE_USER_INFO, userName, encrypted_message);
         if (result) {
-            System.out.println("InvokeUserInformation succeed, username=" + userName);
+            System.out.println("InvokeUserInformation succeed, username = " + userName);
         } else {
-            System.out.println("InvokeUserInformation failed, username=" + userName);
+            System.out.println("InvokeUserInformation failed, username = " + userName);
             throw new WriteFailureException();
         }
     }
@@ -37,9 +37,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public String queryUserInformation(String userName) throws ReadFailureException {
         String result = query(QUERY_USER_INFO, userName);
         if (result != null) {
-            System.out.println("QueryUserInformation succeed, username=" + userName);
+            System.out.println("QueryUserInformation succeed, username = " + userName);
         } else {
-            System.out.println("QueryUserInformation failed, username=" + userName);
+            System.out.println("QueryUserInformation failed, username = " + userName);
             throw new ReadFailureException();
         }
         return result;
@@ -49,9 +49,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public void invokeFinancingApply(long recordId, String encrypted_message) throws WriteFailureException {
         boolean result = insert(INVOKE_FINANCING_APPLY, String.valueOf(recordId), encrypted_message);
         if (result) {
-            System.out.println("InvokeFinancingApply succeed, recordId=" + recordId);
+            System.out.println("InvokeFinancingApply succeed, recordId = " + recordId);
         } else {
-            System.out.println("InvokeFinancingApply failed, recordId=" + recordId);
+            System.out.println("InvokeFinancingApply failed, recordId = " + recordId);
             throw new WriteFailureException();
         }
     }
@@ -60,9 +60,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public String queryFinancingApply(long recordId) throws ReadFailureException {
         String result = query(QUERY_FINANCING_APPLY, String.valueOf(recordId));
         if (result != null) {
-            System.out.println("QueryFinancingApply succeed, recordId=" + recordId);
+            System.out.println("QueryFinancingApply succeed, recordId = " + recordId);
         } else {
-            System.out.println("QueryFinancingApply failed, recordId=" + recordId);
+            System.out.println("QueryFinancingApply failed, recordId = " + recordId);
             throw new ReadFailureException();
         }
         return result;
@@ -72,9 +72,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public void invokeContract(long recordId, String encrypted_message) throws WriteFailureException {
         boolean result = insert(INVOKE_CONTRACT, String.valueOf(recordId), encrypted_message);
         if (result) {
-            System.out.println("InvokeContract succeed, recordId=" + recordId);
+            System.out.println("InvokeContract succeed, recordId = " + recordId);
         } else {
-            System.out.println("InvokeContract failed, recordId=" + recordId);
+            System.out.println("InvokeContract failed, recordId = " + recordId);
             throw new WriteFailureException();
         }
     }
@@ -83,9 +83,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public String queryContract(long recordId) throws ReadFailureException {
         String result = query(QUERY_CONTRACT, String.valueOf(recordId));
         if (result != null) {
-            System.out.println("QueryContract succeed, recordId=" + recordId);
+            System.out.println("QueryContract succeed, recordId = " + recordId);
         } else {
-            System.out.println("QueryContract failed, recordId=" + recordId);
+            System.out.println("QueryContract failed, recordId = " + recordId);
             throw new ReadFailureException();
         }
         return result;
@@ -95,9 +95,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public void invokeLoan(long recordId, String encrypted_message) throws WriteFailureException {
         boolean result = insert(INVOKE_LOAN, String.valueOf(recordId), encrypted_message);
         if (result) {
-            System.out.println("InvokeLoan succeed, recordId=" + recordId);
+            System.out.println("InvokeLoan succeed, recordId = " + recordId);
         } else {
-            System.out.println("InvokeLoan failed, recordId=" + recordId);
+            System.out.println("InvokeLoan failed, recordId = " + recordId);
             throw new WriteFailureException();
         }
     }
@@ -106,9 +106,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public String queryLoan(long recordId) throws ReadFailureException {
         String result = query(QUERY_LOAN, String.valueOf(recordId));
         if (result != null) {
-            System.out.println("QueryLoan succeed, recordId=" + recordId);
+            System.out.println("QueryLoan succeed, recordId = " + recordId);
         } else {
-            System.out.println("QueryLoan failed, recordId=" + recordId);
+            System.out.println("QueryLoan failed, recordId = " + recordId);
             throw new ReadFailureException();
         }
         return result;
@@ -118,9 +118,9 @@ public class BlockChainServiceImpl implements BlockChainService {
     public void invokeRepayment(long recordId, String encrypted_message) throws WriteFailureException {
         boolean result = insert(INVOKE_REPAYMENT, String.valueOf(recordId), encrypted_message);
         if (result) {
-            System.out.println("InvokeFinancingApply succeed, recordId=" + recordId);
+            System.out.println("InvokeFinancingApply succeed, recordId = " + recordId);
         } else {
-            System.out.println("InvokeFinancingApply failed, recordId=" + recordId);
+            System.out.println("InvokeFinancingApply failed, recordId = " + recordId);
             throw new WriteFailureException();
         }
     }
@@ -129,15 +129,13 @@ public class BlockChainServiceImpl implements BlockChainService {
     public String queryRepayment(long recordId) throws ReadFailureException {
         String result = query(QUERY_REPAYMENT, String.valueOf(recordId));
         if (result != null) {
-            System.out.println("QueryRepayment succeed, recordId=" + recordId);
+            System.out.println("QueryRepayment succeed, recordId = " + recordId);
         } else {
-            System.out.println("QueryRepayment failed, recordId=" + recordId);
+            System.out.println("QueryRepayment failed, recordId = " + recordId);
             throw new ReadFailureException();
         }
         return result;
     }
-
-    private static String QUERY_TRA_FUNC = "queryTransaction";
 
     private String query(String queryFunc, String arg) {
         try {
@@ -145,7 +143,7 @@ public class BlockChainServiceImpl implements BlockChainService {
                 fabricmanager = FabricManager.obtain();
             }
             if (chaincodeManager == null) {
-                chaincodeManager = fabricmanager.getChaincodeManager();
+                chaincodeManager = fabricmanager.getManager();
             }
             String[] args = new String[1];
             args[0] = arg;
@@ -161,17 +159,13 @@ public class BlockChainServiceImpl implements BlockChainService {
         }
     }
 
-    private static String QUERY_BC_FUNC = "queryBalanceChange";
-    private static String INSERT_TRA_FUNC = "createTransaction";
-    private static String INSERT_BC_FUNC = "createBalanceChange";
-
     private boolean insert(String invokeFunc, String arg, String encrypted_message) {
         try {
             if (fabricmanager == null) {
                 fabricmanager = FabricManager.obtain();
             }
             if (chaincodeManager == null) {
-                chaincodeManager = fabricmanager.getCh aincodeManager();
+                chaincodeManager = fabricmanager.getManager();
             }
             String[] args = new String[2];
             args[0] = arg;
@@ -182,66 +176,6 @@ public class BlockChainServiceImpl implements BlockChainService {
             //    log.debug(e.getMessage());
             e.printStackTrace();
             return false;
-        }
-    }
-
-    public boolean InsertTransaction(
-            String recordId,
-            int paymentInstitutionId,
-            int paymentUserId,
-            int collectionInstitutionId,
-            int collectionUserId,
-            String dateTime,
-            boolean transactionType,
-            double sum) {
-        System.out.println("InsertTransaction");
-        try {
-            if (fabricmanager == null) fabricmanager = FabricManager.obtain();
-            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
-            String[] args = new String[8];
-            args[0] = recordId;
-            args[1] = Integer.toString(paymentInstitutionId);
-            args[2] = Integer.toString(paymentUserId);
-            args[3] = Integer.toString(collectionInstitutionId);
-            args[4] = Integer.toString(collectionUserId);
-            args[5] = dateTime;
-            args[6] = Boolean.toString(transactionType);
-            args[7] = Double.toString(sum);
-
-            Map<String, String> resultMap = chaincodeManager.invoke("queryTransaction", args);
-            if (resultMap.get("code") == "success") {
-                System.out.println("InsertTransaction success " + recordId);
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            //    log.debug(e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public String QueryTransaction(String recordId) {
-        System.out.println("QueryTransaction " + recordId);
-        return Query(recordId, QUERY_TRA_FUNC);
-    }
-
-    private String Query(String recordId, String queryFunc) {
-        try {
-            if (fabricmanager == null) fabricmanager = FabricManager.obtain();
-            if (chaincodeManager == null) chaincodeManager = fabricmanager.getChaincodeManager();
-            String[] args = new String[1];
-            args[0] = recordId;
-            Map<String, String> resultMap = chaincodeManager.query(queryFunc, args);
-            if (resultMap.get("code") == "success") {
-                return resultMap.get("data");
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            //log.debug(e.getMessage());
-            return null;
         }
     }
 }

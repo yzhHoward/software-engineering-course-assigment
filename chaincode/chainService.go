@@ -42,7 +42,7 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) pb.Response 
 		return s.query_record(APIstub, args)
 	} else if function == "queryRepaymentRecord" {
 		return s.query_record(APIstub, args)
-	} else if function == "insertRontractRecord" {
+	} else if function == "insertContractRecord" {
 		return s.insert_record(APIstub, args)
 	} else if function == "insertFinancingApplyRecord" {
 		return s.insert_record(APIstub, args)
@@ -52,8 +52,9 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) pb.Response 
 		return s.insert_record(APIstub, args)
 	} else if function == "initedger" {
 		return s.initLedger(APIstub)
+	} else {
+		return shim.Error("Invalid smart contract function name!")
 	}
-	return shim.Error("Invalid Smart Contract function name")
 }
 
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) pb.Response {
@@ -129,6 +130,3 @@ func main() {
 		fmt.Printf("Error starting Simple chaincode: %s", err)
 	}
 }
-
-// 参考 https://www.cnblogs.com/studyzy/p/7360733.html 和之前的go文件编写
-// 这个go文件叫什么、放在哪里都无所谓，在Java里调用即可

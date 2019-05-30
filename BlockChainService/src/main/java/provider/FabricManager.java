@@ -1,5 +1,8 @@
 package provider;
 
+import org.hyperledger.fabric.sdk.exception.CryptoException;
+import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
+import org.hyperledger.fabric.sdk.exception.TransactionException;
 import provider.fabricSdk.ChaincodeManager;
 import provider.fabricSdk.FabricConfig;
 import provider.fabricSdk.bean.Chaincode;
@@ -7,20 +10,20 @@ import provider.fabricSdk.bean.Orderers;
 import provider.fabricSdk.bean.Peers;
 
 import java.io.File;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.spec.InvalidKeySpecException;
 
 public class FabricManager {
 
-    private static FabricManager instance = null;
     //    private static Logger log = Logger.getLogger(ChaincodeManager.class);
-    private ChaincodeManager chaincodeManager;
+    private ChaincodeManager manager;
 
-    public FabricManager()
-            throws Exception {
-        chaincodeManager = new ChaincodeManager(getConfig());
-    }
+    private static FabricManager instance = null;
 
     public static FabricManager obtain()
-            throws Exception {
+            throws Exception, CryptoException, InvalidArgumentException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, TransactionException, IOException {
         if (null == instance) {
             synchronized (FabricManager.class) {
                 if (null == instance) {
@@ -31,13 +34,18 @@ public class FabricManager {
         return instance;
     }
 
+    private FabricManager()
+            throws CryptoException, Exception, InvalidArgumentException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, TransactionException, IOException {
+        manager = new ChaincodeManager(getConfig());
+    }
+
     /**
      * 获取节点服务器管理器
      *
      * @return 节点服务器管理器
      */
-    public ChaincodeManager getChaincodeManager() {
-        return chaincodeManager;
+    public ChaincodeManager getManager() {
+        return manager;
     }
 
     /**
