@@ -1,5 +1,3 @@
-// 参考 https://www.cnblogs.com/studyzy/p/7360733.html 和之前的go文件编写
-// 这个go文件叫什么、放在哪里都无所谓，在Java里调用即可
 package main
 
 import (
@@ -10,23 +8,22 @@ import (
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
 
-// User defined chain code struct
-type SimpleChaincode struct{}
+type SmartContract struct{}
 
-func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
-	return shim.Success(nil)
+// Data type
+type Record struct {
+	EncrypedMessage string `json:"encryped_message"`
 }
+type UserInfo struct {
+	EncrypedMessage string `json:"encryped_message"`
+}
+
+// End date type
 
 // End User defined chain code struct
 
 // User defined smart contract
-type SmartContract struct{}
-
 func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) pb.Response {
-	return shim.Success(nil)
-}
-
-func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) pb.Response {
 	return shim.Success(nil)
 }
 
@@ -57,6 +54,10 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) pb.Response 
 		return s.initLedger(APIstub)
 	}
 	return shim.Error("Invalid Smart Contract function name")
+}
+
+func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) pb.Response {
+	return shim.Success(nil)
 }
 
 func get_user_info_key(username string) string {
@@ -122,19 +123,12 @@ func (t *SmartContract) query_record(stub shim.ChaincodeStubInterface, args []st
 
 // End user defined smart contrct
 
-// Data type
-type Record struct {
-	EncrypedMessage string `json:"encryped_message"`
-}
-type UserInfo struct {
-	EncrypedMessage string `json:"encryped_message"`
-}
-
-// End date type
-
 func main() {
 	err := shim.Start(new(SmartContract))
 	if err != nil {
 		fmt.Printf("Error starting Simple chaincode: %s", err)
 	}
 }
+
+// 参考 https://www.cnblogs.com/studyzy/p/7360733.html 和之前的go文件编写
+// 这个go文件叫什么、放在哪里都无所谓，在Java里调用即可
