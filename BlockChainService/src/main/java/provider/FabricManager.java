@@ -1,8 +1,5 @@
 package provider;
 
-import org.hyperledger.fabric.sdk.exception.CryptoException;
-import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
-import org.hyperledger.fabric.sdk.exception.TransactionException;
 import provider.fabricSdk.ChaincodeManager;
 import provider.fabricSdk.FabricConfig;
 import provider.fabricSdk.bean.Chaincode;
@@ -10,10 +7,6 @@ import provider.fabricSdk.bean.Orderers;
 import provider.fabricSdk.bean.Peers;
 
 import java.io.File;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.spec.InvalidKeySpecException;
 
 public class FabricManager {
 
@@ -22,8 +15,13 @@ public class FabricManager {
 
     private static FabricManager instance = null;
 
+    private FabricManager()
+            throws Exception {
+        manager = new ChaincodeManager(getConfig());
+    }
+
     public static FabricManager obtain()
-            throws Exception, CryptoException, InvalidArgumentException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, TransactionException, IOException {
+            throws Exception {
         if (null == instance) {
             synchronized (FabricManager.class) {
                 if (null == instance) {
@@ -32,11 +30,6 @@ public class FabricManager {
             }
         }
         return instance;
-    }
-
-    private FabricManager()
-            throws CryptoException, Exception, InvalidArgumentException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, TransactionException, IOException {
-        manager = new ChaincodeManager(getConfig());
     }
 
     /**
@@ -80,7 +73,7 @@ public class FabricManager {
         peers.setOrgName("Org1");
         peers.setOrgMSPID("Org1MSP");
         peers.setOrgDomainName("org1.example.com");
-        peers.addPeer("peer0.org1.example.com", "peer0.org1.example.com", "grpc://0.0.0.0:7051", "grpc://0.0.0.0:7053", "http://0.0.0.0:7054");
+        peers.addPeer("peer0.org1.example.com", "peer0.org1.example.com", "grpc://0.0.0.0:7056", "grpc://0.0.0.0:7057", "http://0.0.0.0:7054");
         peers.addPeer("peer1.org1.example.com", "peer1.org1.example.com", "grpc://0.0.0.0:7051", "grpc://0.0.0.0:7053", "http://0.0.0.0:7054");
         return peers;
     }
