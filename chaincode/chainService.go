@@ -82,7 +82,7 @@ func (t *SmartContract) insert_user_info(stub shim.ChaincodeStubInterface, args 
 	user_info_as_bytes, other_info := json.Marshal(user_info)
 	fmt.Println(other_info)
 	fmt.Println(user_info_as_bytes)
-	err := stub.PutState(get_record_key(args[0]), user_info_as_bytes)
+	err := stub.PutState(get_user_info_key(args[0]), user_info_as_bytes)
 	fmt.Println(err)
 	return shim.Success(nil)
 }
@@ -92,7 +92,7 @@ func (t *SmartContract) query_user_info(stub shim.ChaincodeStubInterface, args [
 	if len(args) != 1 {
 		return shim.Error("Incorrect number of arguments. Excepting 1")
 	}
-	user_info_as_bytes, _ := stub.GetState(get_record_key(args[0]))
+	user_info_as_bytes, _ := stub.GetState(get_user_info_key(args[0]))
 	return shim.Success(user_info_as_bytes)
 }
 
@@ -108,7 +108,7 @@ func (t *SmartContract) insert_record(stub shim.ChaincodeStubInterface, args []s
 	user_info_as_bytes, other_info := json.Marshal(record)
 	fmt.Println(other_info)
 	fmt.Println(user_info_as_bytes)
-	err := stub.PutState(get_user_info_key(args[0]), user_info_as_bytes)
+	err := stub.PutState(get_record_key(args[0]), user_info_as_bytes)
 	fmt.Println(err)
 	return shim.Success(nil)
 }
