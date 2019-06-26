@@ -111,7 +111,6 @@ public class FabricManager {
 //        log.debug("directory = " + directory.getPath());
 
 //        return directory.getPath() + "/channel-artifacts/";
-        System.out.println(directory.getPath() + "/config/");
         return directory.getPath() + "/config/";
 //        File directory = new File("");//设定为当前文件夹
 //        try{
@@ -133,7 +132,6 @@ public class FabricManager {
         System.out.println(dir);
         File directory = new File(dir);
 //        log.debug("directory = " + directory.getPath());
-        System.out.println(directory.getPath() + "/crypto-config/");
         return directory.getPath() + "/crypto-config/";
 //        return "../basic-network/crypto-config";
     }

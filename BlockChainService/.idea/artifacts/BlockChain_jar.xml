@@ -1,61 +1,55 @@
 <component name="ArtifactManager">
-  <artifact build-on-make="true" name="BlockChain:jar">
+  <artifact type="jar" name="BlockChain:jar">
     <output-path>$PROJECT_DIR$/classes/artifacts/BlockChain_jar</output-path>
-    <root id="root">
-      <element id="archive" name="BlockChain.jar">
-        <element id="module-output" name="BlockChain" />
-        <element id="directory" name="META-INF">
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-        </element>
-      </element>
-      <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.60" />
-      <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.2.0" />
-      <element id="library" level="project" name="Maven: io.grpc:grpc-protobuf-lite:1.17.1" />
-      <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:1.1" />
-      <element id="library" level="project" name="Maven: org.apache.commons:commons-math3:3.6.1" />
-      <element id="library" level="project" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.60" />
-      <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.23" />
-      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:2.0.20.Final" />
-      <element id="library" level="project" name="Maven: org.checkerframework:checker-compat-qual:2.5.2" />
-      <element id="library" level="project" name="Maven: com.google.api.grpc:proto-google-common-protos:1.0.0" />
-      <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.1.4" />
-      <element id="library" level="project" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.17" />
-      <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
-      <element id="library" level="project" name="Maven: io.netty:netty-codec-socks:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
-      <element id="library" level="project" name="Maven: io.netty:netty-handler-proxy:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
-      <element id="library" level="project" name="Maven: org.miracl.milagro.amcl:milagro-crypto-java:0.4.0" />
-      <element id="library" level="project" name="Maven: io.grpc:grpc-context:1.17.1" />
-      <element id="library" level="project" name="Maven: io.netty:netty-codec-http2:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: io.grpc:grpc-stub:1.17.1" />
-      <element id="library" level="project" name="Maven: io.opencensus:opencensus-contrib-grpc-metrics:0.17.0" />
-      <element id="library" level="project" name="Maven: io.grpc:grpc-core:1.17.1" />
-      <element id="library" level="project" name="Maven: org.hyperledger.fabric-sdk-java:fabric-sdk-java:1.4.2" />
-      <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
-      <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
-      <element id="library" level="project" name="Maven: io.grpc:grpc-netty:1.17.1" />
-      <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: com.google.guava:guava:26.0-android" />
-      <element id="library" level="project" name="Maven: io.opencensus:opencensus-api:0.17.0" />
-      <element id="library" level="project" name="Maven: io.netty:netty-transport:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: io.netty:netty-codec:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: io.netty:netty-codec-http:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: io.netty:netty-resolver:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: log4j:apache-log4j-extras:1.2.17" />
-      <element id="library" level="project" name="Maven: org.apache.commons:commons-compress:1.18" />
-      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.7" />
-      <element id="library" level="project" name="Maven: io.netty:netty-handler:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java-util:3.6.1" />
-      <element id="library" level="project" name="Maven: commons-cli:commons-cli:1.4" />
-      <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
-      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.6" />
-      <element id="library" level="project" name="Maven: io.grpc:grpc-protobuf:1.17.1" />
-      <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.1.30.Final" />
-      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.10" />
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-      </element>
+    <root id="archive" name="BlockChain.jar">
+      <element id="module-output" name="BlockChain" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/animal-sniffer-annotations-1.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/apache-log4j-extras-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/bcpkix-jdk15on-1.60.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/bcprov-jdk15on-1.60.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/BlockChain.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/checker-compat-qual-2.5.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/commons-cli-1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/commons-codec-1.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/commons-compress-1.18.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/commons-io-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/commons-math3-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/error_prone_annotations-2.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/fabric-sdk-java-1.4.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/grpc-context-1.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/grpc-core-1.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/grpc-netty-1.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/grpc-protobuf-1.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/grpc-protobuf-lite-1.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/grpc-stub-1.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/gson-2.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/guava-26.0-android.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/httpclient-4.5.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/httpcore-4.4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/j2objc-annotations-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/javax.json-1.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/jsr305-3.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/log4j-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/milagro-crypto-java-0.4.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-buffer-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-codec-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-codec-http2-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-codec-http-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-codec-socks-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-common-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-handler-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-handler-proxy-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-resolver-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-tcnative-boringssl-static-2.0.20.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/netty-transport-4.1.30.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/opencensus-api-0.17.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/opencensus-contrib-grpc-metrics-0.17.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/proto-google-common-protos-1.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/protobuf-java-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/protobuf-java-util-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/lib/snakeyaml-1.23.jar" path-in-jar="/" />
+      <element id="library" level="project" name="animal-sniffer-annotations-1.17" />
     </root>
   </artifact>
 </component>

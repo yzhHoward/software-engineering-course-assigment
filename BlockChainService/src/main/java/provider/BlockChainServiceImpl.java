@@ -39,7 +39,7 @@ public class BlockChainServiceImpl implements BlockChainService {
     @Override
     public String queryUserInformation(String userName) throws ReadFailureException {
         String result = query(QUERY_USER_INFO, userName);
-        if (result != null) {
+        if (result != null && !result.isEmpty()) {
             log.info("QueryUserInformation succeed, username = " + userName);
         } else {
             log.info("QueryUserInformation failed, username = " + userName);
@@ -62,7 +62,7 @@ public class BlockChainServiceImpl implements BlockChainService {
     @Override
     public String queryFinancingApply(long recordId) throws ReadFailureException {
         String result = query(QUERY_FINANCING_APPLY, String.valueOf(recordId));
-        if (result != null) {
+        if (result != null && !result.isEmpty()) {
             log.info("QueryFinancingApply succeed, recordId = " + recordId);
         } else {
             log.info("QueryFinancingApply failed, recordId = " + recordId);
@@ -85,7 +85,7 @@ public class BlockChainServiceImpl implements BlockChainService {
     @Override
     public String queryContract(long recordId) throws ReadFailureException {
         String result = query(QUERY_CONTRACT, String.valueOf(recordId));
-        if (result != null) {
+        if (result != null && !result.isEmpty()) {
             log.info("QueryContract succeed, recordId = " + recordId);
         } else {
             log.info("QueryContract failed, recordId = " + recordId);
@@ -108,7 +108,7 @@ public class BlockChainServiceImpl implements BlockChainService {
     @Override
     public String queryLoan(long recordId) throws ReadFailureException {
         String result = query(QUERY_LOAN, String.valueOf(recordId));
-        if (result != null) {
+        if (result != null && !result.isEmpty()) {
             log.info("QueryLoan succeed, recordId = " + recordId);
         } else {
             log.info("QueryLoan failed, recordId = " + recordId);
@@ -131,7 +131,7 @@ public class BlockChainServiceImpl implements BlockChainService {
     @Override
     public String queryRepayment(long recordId) throws ReadFailureException {
         String result = query(QUERY_REPAYMENT, String.valueOf(recordId));
-        if (result != null) {
+        if (result != null && !result.isEmpty()) {
             log.info("QueryRepayment succeed, recordId = " + recordId);
         } else {
             log.info("QueryRepayment failed, recordId = " + recordId);
