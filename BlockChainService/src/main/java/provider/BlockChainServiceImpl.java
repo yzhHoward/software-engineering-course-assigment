@@ -15,10 +15,8 @@ public class BlockChainServiceImpl implements BlockChainService {
     private static String QUERY_FINANCING_APPLY = "queryFinancingApplyRecord";
     private static String INVOKE_CONTRACT = "insertContractRecord";
     private static String QUERY_CONTRACT = "queryContractRecord";
-    private static String INVOKE_LOAN = "insertLoanRecord";
-    private static String QUERY_LOAN = "queryLoanRecord";
-    private static String INVOKE_REPAYMENT = "insertRepaymentRecord";
-    private static String QUERY_REPAYMENT = "queryRepaymentRecord";
+    private static String INVOKE_LOAN = "insertTransactionRecord";
+    private static String QUERY_LOAN = "queryTransactionRecord";
 
     private FabricManager fabricmanager;
     private ChaincodeManager chaincodeManager;
@@ -95,46 +93,23 @@ public class BlockChainServiceImpl implements BlockChainService {
     }
 
     @Override
-    public void invokeLoan(long recordId, String encrypted_message) throws WriteFailureException {
+    public void invokeTransaction(long recordId, String encrypted_message) throws WriteFailureException {
         boolean result = insert(INVOKE_LOAN, String.valueOf(recordId), encrypted_message);
         if (result) {
-            log.info("InvokeLoan succeed, recordId = " + recordId);
+            log.info("InvokeTransaction succeed, recordId = " + recordId);
         } else {
-            log.info("InvokeLoan failed, recordId = " + recordId);
+            log.info("InvokeTransaction failed, recordId = " + recordId);
             throw new WriteFailureException();
         }
     }
 
     @Override
-    public String queryLoan(long recordId) throws ReadFailureException {
+    public String queryTransaction(long recordId) throws ReadFailureException {
         String result = query(QUERY_LOAN, String.valueOf(recordId));
         if (result != null && !result.isEmpty()) {
-            log.info("QueryLoan succeed, recordId = " + recordId);
+            log.info("QueryTransaction succeed, recordId = " + recordId);
         } else {
-            log.info("QueryLoan failed, recordId = " + recordId);
-            throw new ReadFailureException();
-        }
-        return result;
-    }
-
-    @Override
-    public void invokeRepayment(long recordId, String encrypted_message) throws WriteFailureException {
-        boolean result = insert(INVOKE_REPAYMENT, String.valueOf(recordId), encrypted_message);
-        if (result) {
-            log.info("InvokeFinancingApply succeed, recordId = " + recordId);
-        } else {
-            log.info("InvokeFinancingApply failed, recordId = " + recordId);
-            throw new WriteFailureException();
-        }
-    }
-
-    @Override
-    public String queryRepayment(long recordId) throws ReadFailureException {
-        String result = query(QUERY_REPAYMENT, String.valueOf(recordId));
-        if (result != null && !result.isEmpty()) {
-            log.info("QueryRepayment succeed, recordId = " + recordId);
-        } else {
-            log.info("QueryRepayment failed, recordId = " + recordId);
+            log.info("QueryTransaction failed, recordId = " + recordId);
             throw new ReadFailureException();
         }
         return result;

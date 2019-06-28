@@ -19,13 +19,8 @@ public interface BlockChainService {
 
     String queryContract(long recordId) throws ReadFailureException;
 
-    // 完成放款
-    void invokeLoan(long recordId, String encrypted_message) throws WriteFailureException;
+    // 完成放款/还款
+    void invokeTransaction(long recordId, String encrypted_message) throws WriteFailureException;
 
-    String queryLoan(long recordId) throws ReadFailureException;
-
-    // 完成还款
-    void invokeRepayment(long recordId, String encrypted_message) throws WriteFailureException;
-
-    String queryRepayment(long recordId) throws ReadFailureException;
+    String queryTransaction(long recordId) throws ReadFailureException;
 }

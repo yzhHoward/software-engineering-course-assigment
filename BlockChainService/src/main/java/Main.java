@@ -3,15 +3,10 @@ import utils.exceptions.ReadFailureException;
 
 public class Main {
     public static void main(String[] args) {
-        BlockChainServiceImpl blockChainService = new BlockChainServiceImpl();
+        BlockChainServiceImpl blockChainService = GetFabricManager.getBlockChainService();
         try {
             blockChainService.invokeFinancingApply(500, "hello");
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         try {
@@ -20,18 +15,8 @@ public class Main {
             e.printStackTrace();
         }
         try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        try {
             blockChainService.invokeContract(5000, "mycontract");
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         try {
@@ -40,18 +25,8 @@ public class Main {
             e.printStackTrace();
         }
         try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        try {
             blockChainService.invokeUserInformation("500", "world");
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         try {
